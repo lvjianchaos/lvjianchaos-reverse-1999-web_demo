@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>album</title>
+</head>
+
+<body>
+    
+    <div class="card c1" >
+        <img src="role1.jpg" width="800px">
+    </div>
+    
+    <div class="card c2" >
+        <img src="role2.jpg" width="800px">
+    </div>
+    <div class="card c3" >
+        <img src="role3.jpg" width="700px">
+    </div>
+    <div class="card c4" >
+        <img src="role4.jpg" width="800px">
+    </div>
+    <div class="card c5">
+        <img src="role5.jpg" width="800px">
+    </div>
+    
+    
+</body>
+
+<style>
+    *{
+        padding:0;
+        margin: 0;
+    }
+    body{
+        height: 100vh;
+    }
+    .card{
+        height: 100%;
+        position:absolute;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 0 3px #5f5d5d;
+        transition: all 1s ease-in;
+    }
+    .c1{
+        width:100%;
+
+        background-color: #f2ec7f;
+        z-index:1;
+        border-radius: 0px;
+    }
+    .c2{
+        width:31%;
+
+        background-color: #eae9d6;
+        z-index:2;
+    }
+    .c3{
+        width:24%;
+
+        background-color: #f7826e;
+        z-index:3;
+    }
+    .c4{
+        width:17%;
+
+        background-color: #6a65b8;
+        z-index:4;
+    }
+    .c5{
+        width:10%;
+
+        background-color: #d0cae3;
+        z-index:5;
+    }
+    .c2:hover{
+        width:95%;
+        transition-delay: 0.1s;
+    }
+
+    .c3:hover{
+        width:90%;
+        transition-delay: 0.1s;
+    }
+
+    .c3:hover~.c2{
+        width:95%
+    }
+
+    .c4:hover{
+        width:85%;
+        transition-delay: 0.2s;
+    }
+
+    .c4:hover~.c2{
+        width:90%;
+    }
+
+    .c4:hover~.c3{
+        width:95%;
+        transition-delay: 0.1s;
+    }
+
+    .c5:hover{
+        width:80%;
+        transition-delay: 0.3s;
+    }
+
+    .c5:hover~.c2{
+        width:95%;
+    }
+
+    .c5:hover~.c3{
+        width:90%;
+        transition-delay: 0.1s;
+    }
+    .c5:hover~.c4{
+        width:85%;
+        transition-delay: 0.2s;
+    }
+    
+    li,button,a{
+    font-family: Arno Pro;
+    font-weight:500;
+    font-size:16px;
+    color:#edf0f1;
+    text-decoration: none;
+    transition: all 0.3s ease 0s;
+    position: fixed;
+}
+
+img
+{
+        width:80%;
+        height: auto;
+        position: relative;
+        overflow: hidden;
+        border-radius: 30px;
+        box-shadow: 10px 40px 80px rgba(0, 0, 0, 0.1);
+}
+
+.navig{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 10%;
+    z-index: 100;
+}
+
+.logo{
+    cursor:pointer;
+}
+.nav_links{
+    list-style: none;
+}
+.nav_links li{
+    display: inline-block;
+    padding: 0px 20px;
+}
+
+.nav_links li:nth-child(1){
+    text-decoration: underline;
+}
+
+.nav_links li a{
+    transition: all 0.3s ease 0s;
+}
+
+.nav_links li a:hover{
+    color:#edbd55;
+}
+</style>
+</html>

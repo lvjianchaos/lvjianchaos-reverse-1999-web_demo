@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chaosの1999</title>
+</head>
+<div id="back-to-top" class="back-to-top"><font size="6">Back-Top</font></div>
+<body>
+    
+    <canvas></canvas>
+    
+    <div class="shell">
+    
+        <header>
+            <div class="img"></div>
+        </header>
+        <div class="navig">
+            <img src="logo.png" height="50px" alt="" class="logo" alt="logo">
+            <nav>
+                <ul class="nav_links">
+                    <li><a href="Chaos1999_home.html"><font size="5">HOME</font></a></li>
+                    <li><a href="album.html" target = "_blank"><font size="5">ALBUM</font></a></li>
+                    <li><a href="no.html"  target = "_blank"><font size="5">BACKSTORY</font></a></li>
+                    <li><a href="no.html"  target = "_blank"><font size="5">ACCOUNT</font></a></li>
+                    <li><audio id="audioPlayer"  loop>
+                        <source src="bgm.mp3" type="audio/mpeg">
+                        
+                      </audio>
+                      <img id = "myImage" src = "v2c.png" onclick="playAudio()" alt="Click to play audio">
+                      </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="main">
+            <main>
+                <article>
+                    <div class="multicol">
+                        <h1> Re-verse: </h1>
+                        <h2> 🔺1-9-9-9</h2>
+                        <p>
+                            <strong><font size="18">On</font> the last day of 1999,<br/><br/> 
+                                "The Storm" ascended from the ground up into the sky, 
+                                and everyone except for you who became disorientated after is dissipated. <br/><br/>
+                                You are called the "Timekeeper", the final witness of an era. <br/>
+                                You search for the truth behind "The Storm", 
+                                and the answers that you are searching for are hidden in the last day of 1999.<br/>
+                        </strong>
+                        </p>
+                    </div>
+                    <br />
+                    <video autoplay loop muted>
+                        <source src = "bg-video1.mp4" type="video/mp4">
+                    </video>
+                    <div class ="multicol">
+                        <h1>IN·TRO-▼</h1>
+                        <h2>▲DUC·TION</h2>
+                        <p>
+                            <strong><font size="18">Reverse: 1999</font><br/>
+                            is a turn-based fantasy adventure RPG<br/> 
+                            that is being developed and published by Bluepoch 
+                            for iOS and Android devices. <br/><br/>
+
+                            Reverse: 1999 was released first in mainland China on May 31st, <br/>
+                            and subsequently released worldwide on October 26th, 2023 on PC, iOS, and Android platforms.
+                            </strong>
+                        </p>
+                    </div><img src="./2.jpg" alt="">
+                </article>
+            </main>
+        </div>
+    </div>
+
+    <footer>
+            <p>版权所有 &copy; 2024 Chaosの1999</p>
+            <p>联系我们：chaos_1999@qq.com</p>
+            <p>隐私政策    |    使用条款</p>
+            <p>网站地图：xxxxxxxxxxxx</p>
+            <p>友情链接：**************</p>
+      </footer>
+      
+</body>
+
+<script>
+
+function playAudio() {
+   
+    var audioPlayer = document.getElementById('audioPlayer');
+    if (audioPlayer.paused) {
+      audioPlayer.play();
+      myImage.src = 'v2.jpg'
+    } else {
+      audioPlayer.pause();
+      myImage.src = 'v2c.png';
+    }
+  }
+  
+    const header = document.querySelector('header');
+    const img = document.querySelector('.img');
+    let scrollDistance = 0;
+    let requestId = null;
+
+    function updateHeaderClipPath() {
+        const clipPathValue = `polygon(0 0, 100% 0%, 100% ${(scrollDistance <= 600) ? 100 - ((scrollDistance / 600) * 60) : 75}%, 0 100%)`;
+        header.style.clipPath = clipPathValue;
+        const scaleValue = 1 + ((scrollDistance / 600) * 1);
+        img.style.transform = `scale(${scaleValue})`;
+        const opacityValue = (scrollDistance / 600);
+    }
+
+     
+    function scrollHandler(event) {
+        if (event.deltaY < 0) {
+                scrollDistance = Math.max(0, scrollDistance + event.deltaY);
+            } else {
+                scrollDistance = Math.min(600, scrollDistance + event.deltaY);
+        }
+        if (!requestId) {
+            requestId = window.requestAnimationFrame(() => {
+                updateHeaderClipPath();
+                requestId = null;
+            });
+        }
+    }  
+    window.addEventListener('wheel', scrollHandler);
+    // 定义星星的颜色
+    const STAR_COLOR = '#fff';
+    // 定义星星的大小
+    const STAR_SIZE = 3;
+    // 定义星星的最小缩放比例
+    const STAR_MIN_SCALE = 0.2;
+    // 定义溢出阈值
+    const OVERFLOW_THRESHOLD = 50;
+    // 定义星星的数量
+    const STAR_COUNT = (window.innerWidth + window.innerHeight) / 8;
+    // 获取canvas元素
+    const canvas = document.querySelector('canvas');
+    // 获取canvas的绘图上下文
+    const context = canvas.getContext('2d');
+    // 定义缩放比例
+    let scale = 1; // device pixel ratio
+    // 定义宽度和高度
+    let width;
+    let height;
+    // 定义星星数组
+    let stars = [];
+    // 定义鼠标指针的位置
+    let pointerX;
+    let pointerY;
+    // 定义速度对象
+    let velocity = { x: 0, y: 0, tx: 0, ty: 0, z: 0.0009 };
+    // 定义触摸输入标志
+    let touchInput = false;
+    // 生成星星
+    generate();
+    // 调整大小
+    resize();
+    // 运行动画
+    step();
+    // 当窗口大小改变时，重新调整大小
+    window.onresize = resize;
+    // 当鼠标在canvas上移动时，更新鼠标指针位置
+    canvas.onmousemove = onMouseMove;
+    // 当触摸屏在canvas上移动时，更新鼠标指针位置
+    canvas.ontouchmove = onTouchMove;
+    // 当触摸屏离开canvas时，更新鼠标指针位置
+    canvas.ontouchend = onMouseLeave;
+    // 当鼠标离开文档时，更新鼠标指针位置
+    document.onmouseleave = onMouseLeave;
+    // 生成星星
+    function generate() {
+        for (let i = 0; i < STAR_COUNT; i++) {
+            stars.push({
+                x: 0,
+                y: 0,
+                z: STAR_MIN_SCALE + Math.random() * (1 - STAR_MIN_SCALE),
+            });
+        }
+    }
+    // 将星星放置到随机位置
+    function placeStar(star) {
+        star.x = Math.random() * width;
+        star.y = Math.random() * height;
+    }
+    // 回收星星并重新放置到新的位置
+    function recycleStar(star) {
+        // 初始化方向为 'z'
+        let direction = 'z';
+        // 获取速度的绝对值
+        let vx = Math.abs(velocity.x);
+        let vy = Math.abs(velocity.y);
+        // 如果速度的绝对值大于1，则根据速度的大小随机确定方向
+        if (vx > 1 || vy > 1) {
+            let axis;
+            // 如果水平速度大于垂直速度，则根据水平速度的比例随机确定水平或垂直方向
+            if (vx > vy) {
+                axis = Math.random() < vx / (vx + vy) ? 'h' : 'v';
+            } else {
+                axis = Math.random() < vy / (vx + vy) ? 'v' : 'h';
+            }
+            // 根据方向确定具体的移动方向
+            if (axis === 'h') {
+                direction = velocity.x > 0 ? 'l' : 'r';
+            } else {
+                direction = velocity.y > 0 ? 't' : 'b';
+            }
+        }
+        // 随机设置星星的缩放比例
+        star.z = STAR_MIN_SCALE + Math.random() * (1 - STAR_MIN_SCALE);
+        // 根据方向设置星星的位置
+        if (direction === 'z') {
+            // 如果方向为 'z'，则将星星放置在屏幕中心
+            star.z = 0.1;
+            star.x = Math.random() * width;
+            star.y = Math.random() * height;
+        } else if (direction === 'l') {
+            // 如果方向为 'l'，则将星星放置在屏幕左侧
+            star.x = -OVERFLOW_THRESHOLD;
+            star.y = height * Math.random();
+        } else if (direction === 'r') {
+            // 如果方向为 'r'，则将星星放置在屏幕右侧
+            star.x = width + OVERFLOW_THRESHOLD;
+            star.y = height * Math.random();
+        } else if (direction === 't') {
+            // 如果方向为 't'，则将星星放置在屏幕顶部
+            star.x = width * Math.random();
+            star.y = -OVERFLOW_THRESHOLD;
+        } else if (direction === 'b') {
+            // 如果方向为 'b'，则将星星放置在屏幕底部
+            star.x = width * Math.random();
+            star.y = height + OVERFLOW_THRESHOLD;
+        }
+    }
+    // 调整大小
+    function resize() {
+        // 获取设备像素比例
+        scale = window.devicePixelRatio || 1;
+        // 设置画布的宽度和高度
+        width = window.innerWidth * scale;
+        height = window.innerHeight * scale;
+        canvas.width = width;
+        canvas.height = height;
+        // 将所有星星重新放置到屏幕上
+        stars.forEach(placeStar);
+    }
+    // 动画的每一帧
+    function step() {
+        // 清空画布
+        context.clearRect(0, 0, width, height);
+        // 更新星星的位置和速度
+        update();
+        // 绘制星星
+        render();
+        // 请求下一帧动画
+        requestAnimationFrame(step);
+    }
+    // 更新星星的位置和速度
+    function update() {
+        // 缓动速度
+        velocity.tx *= 0.88;
+        velocity.ty *= 0.88;
+        // 更新速度
+        velocity.x += (velocity.tx - velocity.x) * 0.5;
+        velocity.y += (velocity.ty - velocity.y) * 0.5;
+        // 遍历所有星星
+        stars.forEach((star) => {
+            // 根据速度和缩放比例更新星星的位置
+            star.x += velocity.x * star.z;
+            star.y += velocity.y * star.z;
+            // 根据速度和缩放比例更新星星的位置（使星星围绕屏幕中心旋转）
+            star.x += (star.x - width / 2) * velocity.z * star.z;
+            star.y += (star.y - height / 2) * velocity.z * star.z;
+            // 更新星星的缩放比例
+            star.z += velocity.z;
+            // 如果星星超出屏幕范围，则重新放置到屏幕上
+            if (
+                star.x < -OVERFLOW_THRESHOLD ||
+                star.x > width + OVERFLOW_THRESHOLD ||
+                star.y < -OVERFLOW_THRESHOLD ||
+                star.y > height + OVERFLOW_THRESHOLD
+            ) {
+                recycleStar(star);
+            }
+        });
+    }
+    // 绘制星星
+    function render() {
+        // 遍历所有星星
+        stars.forEach((star) => {
+            // 设置绘制星星的样式
+            context.beginPath();
+            context.lineCap = 'round';
+            context.lineWidth = STAR_SIZE * star.z * scale;
+            context.globalAlpha = 0.5 + 0.5 * Math.random();
+            context.strokeStyle = STAR_COLOR;
+            // 绘制星星的路径
+            context.beginPath();
+            context.moveTo(star.x, star.y);
+            // 计算星星的尾巴坐标
+            let tailX = velocity.x * 2;
+            let tailY = velocity.y * 2;
+            // 如果尾巴坐标的绝对值小于0.1，则设置为0.5
+            if (Math.abs(tailX) < 0.1) tailX = 0.5;
+            if (Math.abs(tailY) < 0.1) tailY = 0.5;
+            // 绘制星星的尾巴
+            context.lineTo(star.x + tailX, star.y + tailY);
+            context.stroke();
+        });
+    }
+    // 移动鼠标指针
+    function movePointer(x, y) {
+        // 如果之前有记录鼠标指针的位置，则计算鼠标指针的移动距离，并更新速度
+        if (typeof pointerX === 'number' && typeof pointerY === 'number') {
+            let ox = x - pointerX;
+            let oy = y - pointerY;
+            velocity.tx = velocity.tx + (ox / 8) * scale * (touchInput ? 1 : -1);
+            velocity.ty = velocity.ty + (oy / 8) * scale * (touchInput ? 1 : -1);
+        }
+        // 更新鼠标指针的位置
+        pointerX = x;
+        pointerY = y;
+    }
+    // 当鼠标在canvas上移动时的事件处理函数
+    function onMouseMove(event) {
+        touchInput = false;
+        movePointer(event.clientX, event.clientY);
+    }
+    // 当触摸屏在canvas上移动时的事件处理函数
+    function onTouchMove(event) {
+        touchInput = true;
+        movePointer(event.touches[0].clientX, event.touches[0].clientY, true);
+        event.preventDefault();
+    }
+    // 当鼠标离开canvas时的事件处理函数
+    function onMouseLeave() {
+        pointerX = null;
+        pointerY = null;
+    }
+
+    // 获取按钮元素
+const backToTopButton = document.getElementById('back-to-top');
+
+// 为按钮添加点击事件监听器
+backToTopButton.addEventListener('click', function() {
+  // 使用scrollTo方法将页面滚动到顶部
+  window.scrollTo({
+    top: 700,
+    behavior: 'smooth'
+  });
+});
+
+// 为了在用户滚动时显示按钮，可以使用监听器来检测滚动事件
+window.addEventListener('scroll', function() {
+  // 判断页面是否滚动了一定距离
+  if (window.pageYOffset > 900) { // 这个数值可以根据需要调整
+    backToTopButton.classList.add('show');
+  } else {
+    backToTopButton.classList.remove('show');
+  }
+});
+
+</script>
+
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+    }
+
+    
+    body {
+        width: 100%;
+        height: 100%;
+        /* 背景渐变 */
+        background-image: linear-gradient(-225deg, #231557 0%,
+                #884bc9 29%, #FF1361 100%);
+    }
+
+    canvas {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+    }
+    .shell {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+
+    }
+
+    header {
+        width: 100%;
+        height: 700px;
+        overflow: hidden;
+        clip-path: polygon(0 0, 100% 0%, 100% 100%, 0 100%);
+        transition: clip-path 0.5s ease;
+        position: relative;
+    }
+
+    video{
+        width:100%;
+        height: auto;
+        border: 50px solid #000;
+        transform: translateX(-50px);
+        
+    }
+    .img {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+        background: url(./4.jpg);
+        background-size: cover;
+        transform: scale(1);
+        transition: transform 0.5s ease;
+    }
+
+    .main {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        margin-top: 100px;
+    }
+
+    .main h2 {
+        font-size: 50px;
+        margin-bottom: 40px;
+    }
+
+    .main span {
+        padding: 0 100px;
+        font-size: 30px;
+    }
+
+
+
+    @import url('https://fonts.googleapis.com/css?family=Lato:700,900');
+
+    @font-face {
+        font-family: Arno Pro;
+        src: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/ArnoPro-Regular.otf);
+        font-style: normal;
+    }
+
+    @font-face {
+        font-family: Arno Pro;
+        src: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/ArnoPro-Italic.otf);
+        font-style: italic;
+    }
+
+    p {
+        font-family: Arno Pro, serif;
+        font-size: 1.4rem;
+        line-height: 1.4;
+        margin: 0;
+    }
+
+    p.credits {
+        font-style: italic;
+        text-indent: 0 !important;
+        margin: 1rem 0;
+    }
+
+    p a {
+        font-weight: bolder;
+        color: #000;
+        text-decoration: none;
+    }
+
+    @supports (font-variant-caps: small-caps) {
+    
+        .multicol:first-of-type p:first-of-type {
+            font-variant-caps: small-caps;
+        }
+    }
+
+    p:not(:first-of-type) {
+        text-indent: 1.4rem;
+    }
+
+    .multicol {
+        column-count: 4;
+        column-gap: 2rem;
+    }
+
+    .multicol+img {
+        margin: 2rem 0;
+    }
+
+    article {
+        width: 80%;
+        margin: 0 auto 4rem;
+    }
+
+    article img {
+        width: 100%;
+    }
+
+    article header {
+        margin-bottom: 2.5rem;
+        padding-bottom: 4rem;
+        border-bottom: 1px solid rgba(0, 0, 0, 1);
+    }
+
+    article h1 {
+        color:#fefea5;
+        margin-top: 0;
+        font-size: 4rem;
+    }
+
+    article h2 {
+        color: RGB(233,220,205);
+        break-after: column;
+        font-size: 2rem;
+    }
+
+    h1,
+    h2 {
+        font-family: Lato, sans-serif;
+    }
+
+    @media all and (max-width: 1600px) {
+        .multicol {
+            column-count: 3;
+        }
+    }
+
+    @media all and (max-width: 1000px) {
+        .multicol {
+            column-count: 2;
+        }
+    }
+
+    @media all and (max-width:800px) {
+        article h2 {
+            break-after: avoid;
+        }
+
+        .multicol {
+            column-count: 1;
+        }
+    }
+
+    @media all and (max-width:600px) {
+        body {
+            margin: 0;
+        }
+
+        article {
+            width: 100%;
+        }
+
+        .multicol {
+            padding: 0 1rem;
+        }
+
+        article header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        h1 {
+            margin-bottom: 0;
+        }
+    }
+
+    /* 默认隐藏按钮 */
+#back-to-top {
+    font-family:Arno Pro;
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 100;
+}
+
+/* 当页面滚动一定距离时显示按钮 */
+html {
+  scroll-behavior: smooth;
+}
+
+body::scrollbar {
+  width: 8px;
+}
+
+body::-webkit-scrollbar {
+  width: 8px;
+}
+
+body::-webkit-scrollbar-track {
+  background: #f2f2f2;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* 鼠标悬停按钮时的样式 */
+#back-to-top:hover {
+  color: #fad14a;
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+}
+
+/* 显示按钮的动画 */
+#back-to-top.show {
+  display: block;
+}
+
+footer {
+  padding: 20px 0;
+  text-align: center;
+}
+
+footer p {
+  margin: 0;
+  padding: 0 10px;
+}
+
+li,button,a{
+    font-family: Arno Pro;
+    font-weight:500;
+    font-size:16px;
+    color:#edf0f1;
+    text-decoration: none;
+    transition: all 0.3s ease 0s;
+}
+
+
+.navig{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 10%;
+    z-index: 2;
+}
+
+.logo{
+    cursor:pointer;
+}
+.nav_links{
+    list-style: none;
+}
+.nav_links li{
+    display: inline-block;
+    padding: 0px 20px;
+}
+
+.nav_links li:nth-child(1){
+    text-decoration: underline;
+}
+
+.nav_links li a{
+    transition: all 0.3s ease 0s;
+}
+
+.nav_links li a:hover{
+    color:#edbd55;
+}
+
+audio {
+    display: none
+}
+
+</style>
+</html> 
