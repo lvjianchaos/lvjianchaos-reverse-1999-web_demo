@@ -6,30 +6,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chaosの1999</title>
 </head>
-<div id="back-to-top" class="back-to-top"><font size="6">Back-Top</font></div>
+
+<div id="back-to-top" class="back-to-top">
+    <font size="6">Back-Top</font>
+</div>
+
 <body>
-    
+
     <canvas></canvas>
-    
+
     <div class="shell">
-    
+
         <header>
             <div class="img"></div>
         </header>
         <div class="navig">
-            <img src="logo.png" height="50px" alt="" class="logo" alt="logo">
+            <img src="assets/logo.png" height="50px" alt="" class="logo" alt="logo">
             <nav>
                 <ul class="nav_links">
-                    <li><a href="Chaos1999_home.html"><font size="5">HOME</font></a></li>
-                    <li><a href="album.html" target = "_blank"><font size="5">ALBUM</font></a></li>
-                    <li><a href="no.html"  target = "_blank"><font size="5">BACKSTORY</font></a></li>
-                    <li><a href="no.html"  target = "_blank"><font size="5">ACCOUNT</font></a></li>
-                    <li><audio id="audioPlayer"  loop>
-                        <source src="bgm.mp3" type="audio/mpeg">
-                        
-                      </audio>
-                      <img id = "myImage" src = "v2c.png" onclick="playAudio()" alt="Click to play audio">
-                      </li>
+                    <li><a href="Chaos1999_home.html">
+                            <font size="5">HOME</font>
+                        </a></li>
+                    <li><a href="album.html" target="_blank">
+                            <font size="5">ALBUM</font>
+                        </a></li>
+                    <li><a href="no.html" target="_blank">
+                            <font size="5">BACKSTORY</font>
+                        </a></li>
+                    <li><a href="no.html" target="_blank">
+                            <font size="5">ACCOUNT</font>
+                        </a></li>
+                    <li><audio id="audioPlayer" loop>
+                            <source src="assets/bgm.mp3" type="audio/mpeg">
+
+                        </audio>
+                        <img id="myImage" src="assets/v2c.png" onclick="playAudio()" alt="Click to play audio">
+                    </li>
                 </ul>
             </nav>
         </div>
@@ -40,62 +52,65 @@
                         <h1> Re-verse: </h1>
                         <h2> 🔺1-9-9-9</h2>
                         <p>
-                            <strong><font size="18">On</font> the last day of 1999,<br/><br/> 
-                                "The Storm" ascended from the ground up into the sky, 
-                                and everyone except for you who became disorientated after is dissipated. <br/><br/>
-                                You are called the "Timekeeper", the final witness of an era. <br/>
-                                You search for the truth behind "The Storm", 
-                                and the answers that you are searching for are hidden in the last day of 1999.<br/>
-                        </strong>
+                            <strong>
+                                <font size="18">On</font> the last day of 1999,<br /><br />
+                                "The Storm" ascended from the ground up into the sky,
+                                and everyone except for you who became disorientated after is dissipated. <br /><br />
+                                You are called the "Timekeeper", the final witness of an era. <br />
+                                You search for the truth behind "The Storm",
+                                and the answers that you are searching for are hidden in the last day of 1999.<br />
+                            </strong>
                         </p>
                     </div>
                     <br />
                     <video autoplay loop muted>
-                        <source src = "bg-video1.mp4" type="video/mp4">
+                        <source src="assets/bg-video1.mp4" type="video/mp4">
                     </video>
-                    <div class ="multicol">
+                    <div class="multicol">
                         <h1>IN·TRO-▼</h1>
                         <h2>▲DUC·TION</h2>
                         <p>
-                            <strong><font size="18">Reverse: 1999</font><br/>
-                            is a turn-based fantasy adventure RPG<br/> 
-                            that is being developed and published by Bluepoch 
-                            for iOS and Android devices. <br/><br/>
+                            <strong>
+                                <font size="18">Reverse: 1999</font><br />
+                                is a turn-based fantasy adventure RPG<br />
+                                that is being developed and published by Bluepoch
+                                for iOS and Android devices. <br /><br />
 
-                            Reverse: 1999 was released first in mainland China on May 31st, <br/>
-                            and subsequently released worldwide on October 26th, 2023 on PC, iOS, and Android platforms.
+                                Reverse: 1999 was released first in mainland China on May 31st, <br />
+                                and subsequently released worldwide on October 26th, 2023 on PC, iOS, and Android
+                                platforms.
                             </strong>
                         </p>
-                    </div><img src="./2.jpg" alt="">
+                    </div><img src="assets/2.jpg" alt="">
                 </article>
             </main>
         </div>
     </div>
 
     <footer>
-            <p>版权所有 &copy; 2024 Chaosの1999</p>
-            <p>联系我们：chaos_1999@qq.com</p>
-            <p>隐私政策    |    使用条款</p>
-            <p>网站地图：xxxxxxxxxxxx</p>
-            <p>友情链接：**************</p>
-      </footer>
-      
+        <p>版权所有 &copy; 2024 Chaosの1999</p>
+        <p>联系我们：chaos_1999@qq.com</p>
+        <p>隐私政策 | 使用条款</p>
+        <p>网站地图：xxxxxxxxxxxx</p>
+        <p>友情链接：**************</p>
+    </footer>
+
 </body>
 
 <script>
 
-function playAudio() {
-   
-    var audioPlayer = document.getElementById('audioPlayer');
-    if (audioPlayer.paused) {
-      audioPlayer.play();
-      myImage.src = 'v2.jpg'
-    } else {
-      audioPlayer.pause();
-      myImage.src = 'v2c.png';
+    function playAudio() {
+
+        var audioPlayer = document.getElementById('audioPlayer');
+        if (audioPlayer.paused) {
+            audioPlayer.play();
+            myImage.src = 'assets/v2.jpg'
+        } else {
+            audioPlayer.pause();
+            myImage.src = 'assets/v2c.png';
+        }
     }
-  }
-  
+
     const header = document.querySelector('header');
     const img = document.querySelector('.img');
     let scrollDistance = 0;
@@ -109,12 +124,12 @@ function playAudio() {
         const opacityValue = (scrollDistance / 600);
     }
 
-     
+
     function scrollHandler(event) {
         if (event.deltaY < 0) {
-                scrollDistance = Math.max(0, scrollDistance + event.deltaY);
-            } else {
-                scrollDistance = Math.min(600, scrollDistance + event.deltaY);
+            scrollDistance = Math.max(0, scrollDistance + event.deltaY);
+        } else {
+            scrollDistance = Math.min(600, scrollDistance + event.deltaY);
         }
         if (!requestId) {
             requestId = window.requestAnimationFrame(() => {
@@ -122,7 +137,7 @@ function playAudio() {
                 requestId = null;
             });
         }
-    }  
+    }
     window.addEventListener('wheel', scrollHandler);
     // 定义星星的颜色
     const STAR_COLOR = '#fff';
@@ -339,26 +354,26 @@ function playAudio() {
     }
 
     // 获取按钮元素
-const backToTopButton = document.getElementById('back-to-top');
+    const backToTopButton = document.getElementById('back-to-top');
 
-// 为按钮添加点击事件监听器
-backToTopButton.addEventListener('click', function() {
-  // 使用scrollTo方法将页面滚动到顶部
-  window.scrollTo({
-    top: 700,
-    behavior: 'smooth'
-  });
-});
+    // 为按钮添加点击事件监听器
+    backToTopButton.addEventListener('click', function () {
+        // 使用scrollTo方法将页面滚动到顶部
+        window.scrollTo({
+            top: 700,
+            behavior: 'smooth'
+        });
+    });
 
-// 为了在用户滚动时显示按钮，可以使用监听器来检测滚动事件
-window.addEventListener('scroll', function() {
-  // 判断页面是否滚动了一定距离
-  if (window.pageYOffset > 900) { // 这个数值可以根据需要调整
-    backToTopButton.classList.add('show');
-  } else {
-    backToTopButton.classList.remove('show');
-  }
-});
+    // 为了在用户滚动时显示按钮，可以使用监听器来检测滚动事件
+    window.addEventListener('scroll', function () {
+        // 判断页面是否滚动了一定距离
+        if (window.pageYOffset > 900) { // 这个数值可以根据需要调整
+            backToTopButton.classList.add('show');
+        } else {
+            backToTopButton.classList.remove('show');
+        }
+    });
 
 </script>
 
@@ -368,7 +383,7 @@ window.addEventListener('scroll', function() {
         margin: 0;
     }
 
-    
+
     body {
         width: 100%;
         height: 100%;
@@ -381,7 +396,9 @@ window.addEventListener('scroll', function() {
         position: fixed;
         width: 100%;
         height: 100%;
+        z-index: 0;
     }
+
     .shell {
         width: 100%;
         display: flex;
@@ -398,22 +415,24 @@ window.addEventListener('scroll', function() {
         position: relative;
     }
 
-    video{
-        width:100%;
+    video {
+        width: 100%;
         height: auto;
         border: 50px solid #000;
         transform: translateX(-50px);
-        
+        z-index: 1;
     }
+
     .img {
         width: 100%;
         height: 100%;
         position: relative;
         overflow: hidden;
-        background: url(./4.jpg);
+        background: url(./assets/4.jpg);
         background-size: cover;
         transform: scale(1);
         transition: transform 0.5s ease;
+        z-index: 1;
     }
 
     .main {
@@ -428,11 +447,13 @@ window.addEventListener('scroll', function() {
     .main h2 {
         font-size: 50px;
         margin-bottom: 40px;
+        z-index: 1;
     }
 
     .main span {
         padding: 0 100px;
         font-size: 30px;
+        z-index: 1;
     }
 
 
@@ -471,7 +492,7 @@ window.addEventListener('scroll', function() {
     }
 
     @supports (font-variant-caps: small-caps) {
-    
+
         .multicol:first-of-type p:first-of-type {
             font-variant-caps: small-caps;
         }
@@ -506,13 +527,13 @@ window.addEventListener('scroll', function() {
     }
 
     article h1 {
-        color:#fefea5;
+        color: #fefea5;
         margin-top: 0;
         font-size: 4rem;
     }
 
     article h2 {
-        color: RGB(233,220,205);
+        color: RGB(233, 220, 205);
         break-after: column;
         font-size: 2rem;
     }
@@ -569,106 +590,110 @@ window.addEventListener('scroll', function() {
     }
 
     /* 默认隐藏按钮 */
-#back-to-top {
-    font-family:Arno Pro;
-  display: none;
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 100;
-}
+    #back-to-top {
+        font-family: Arno Pro;
+        display: none;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 100;
+    }
 
-/* 当页面滚动一定距离时显示按钮 */
-html {
-  scroll-behavior: smooth;
-}
+    /* 当页面滚动一定距离时显示按钮 */
+    html {
+        scroll-behavior: smooth;
+    }
 
-body::scrollbar {
-  width: 8px;
-}
+    body::scrollbar {
+        width: 8px;
+    }
 
-body::-webkit-scrollbar {
-  width: 8px;
-}
+    body::-webkit-scrollbar {
+        width: 8px;
+    }
 
-body::-webkit-scrollbar-track {
-  background: #f2f2f2;
-}
+    body::-webkit-scrollbar-track {
+        background: #f2f2f2;
+    }
 
-body::-webkit-scrollbar-thumb {
-  background: #888;
-}
+    body::-webkit-scrollbar-thumb {
+        background: #888;
+    }
 
-body::-webkit-scrollbar-thumb:hover {
-  background: #555;
-}
+    body::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
 
-/* 鼠标悬停按钮时的样式 */
-#back-to-top:hover {
-  color: #fad14a;
-  transition: all 0.3s ease 0s;
-  cursor: pointer;
-}
+    /* 鼠标悬停按钮时的样式 */
+    #back-to-top:hover {
+        color: #fad14a;
+        transition: all 0.3s ease 0s;
+        cursor: pointer;
+    }
 
-/* 显示按钮的动画 */
-#back-to-top.show {
-  display: block;
-}
+    /* 显示按钮的动画 */
+    #back-to-top.show {
+        display: block;
+    }
 
-footer {
-  padding: 20px 0;
-  text-align: center;
-}
+    footer {
+        padding: 20px 0;
+        text-align: center;
+    }
 
-footer p {
-  margin: 0;
-  padding: 0 10px;
-}
+    footer p {
+        margin: 0;
+        padding: 0 10px;
+    }
 
-li,button,a{
-    font-family: Arno Pro;
-    font-weight:500;
-    font-size:16px;
-    color:#edf0f1;
-    text-decoration: none;
-    transition: all 0.3s ease 0s;
-}
+    li,
+    button,
+    a {
+        font-family: Arno Pro;
+        font-weight: 500;
+        font-size: 16px;
+        color: #edf0f1;
+        text-decoration: none;
+        transition: all 0.3s ease 0s;
+    }
 
 
-.navig{
-    display:flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 30px 10%;
-    z-index: 2;
-}
+    .navig {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 30px 10%;
+        z-index: 2;
+    }
 
-.logo{
-    cursor:pointer;
-}
-.nav_links{
-    list-style: none;
-}
-.nav_links li{
-    display: inline-block;
-    padding: 0px 20px;
-}
+    .logo {
+        cursor: pointer;
+    }
 
-.nav_links li:nth-child(1){
-    text-decoration: underline;
-}
+    .nav_links {
+        list-style: none;
+    }
 
-.nav_links li a{
-    transition: all 0.3s ease 0s;
-}
+    .nav_links li {
+        display: inline-block;
+        padding: 0px 20px;
+    }
 
-.nav_links li a:hover{
-    color:#edbd55;
-}
+    .nav_links li:nth-child(1) {
+        text-decoration: underline;
+    }
 
-audio {
-    display: none
-}
+    .nav_links li a {
+        transition: all 0.3s ease 0s;
+    }
 
+    .nav_links li a:hover {
+        color: #edbd55;
+    }
+
+    audio {
+        display: none
+    }
 </style>
-</html> 
+
+</html>
